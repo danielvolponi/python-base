@@ -18,30 +18,19 @@
 __version__ = "0.1.1"
 __author__ = "Daniel"
 
-template_base = """
----Tabuada do 2---
-
-    {operacao}
-
-
-##################
-"""
-
-
 #base = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 numeros = list(range(1, 11))
 
 # Iterables (percorriveis)
 
 # Para cada numero em numeros
-for numero in numeros:
-    for outro_numero in numeros:
-        n1 = numero
-        n2 = outro_numero
+for n1 in numeros:
+    print("{:-^18}".format(f"Tabuada do {n1}"))
+    print()
+    for n2 in numeros:
         resultado = n1 * n2
-        operacao = f"{n1} x {n2} = {resultado}"
-        print(
-            template_base.format(
-                operacao=operacao
-            )
-        )
+        print("{:^18}".format(f"{n1} x {n2} = {resultado}"))
+
+    print()
+    print("#" * 18)
+
