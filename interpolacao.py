@@ -10,7 +10,7 @@ import os
 
 arguments = sys.argv[1:]
 if not arguments:
-    print("Informe on nome do arquivo de emails")
+    print("Informe o nome do arquivo de emails")
     sys.exit(1)
 
 filename = arguments[0]
