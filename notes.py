@@ -40,7 +40,13 @@ if arguments[0] == "read":
             print()
     
 if arguments[0] == "new":
-    title = arguments[1] # TODO: tratar exception
+    try:
+        title = arguments[1]
+    except IndexError as e:
+        print(f"[ERROR] {str(e)}")
+        print("You must specify a title like `notes.py new Note`")
+        sys.exit(1)
+    
     text = [
         f"{title}",
         input("tag: ").strip(),
