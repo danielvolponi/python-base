@@ -13,3 +13,7 @@ sub, 10, 30 = -20
 2022-05-26T18:08:41.170873 - daniel.volponi - sum, 10, 2 = 12
 2022-05-26T18:08:52.870150 - daniel.volponi - div, 10, 5 = 2.0
 2022-05-26T18:19:53.856316 - daniel.volponi - sub, 5, 5.5 = -0.5
+2022-06-05T17:32:24.669013 - danielvolponi - sub, 1, 1 = 0
+2022-06-05T17:32:27.520893 - danielvolponi - sub, 1, 2 = -1
+2022-06-05T17:42:47.107828 - danielvolponi - sub, 1, 1 = 0
+2022-06-05T17:42:52.931413 - danielvolponi - sum, 1, 1 = 2
