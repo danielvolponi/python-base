@@ -32,8 +32,21 @@ __license__ = "Unlicense"
 
 import os
 import sys
-
+import logging
 from datetime import datetime
+
+
+log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
+log = logging.Logger("logs.py", log_level)
+ch = logging.StreamHandler()
+ch.setLevel(log_level)
+fmt = logging.Formatter(
+    '%(asctime)s  %(name)s  %(levelname)s '
+    'l:%(lineno)d f:%(filename)s: %(message)s'
+)
+ch.setFormatter(fmt)
+log.addHandler(ch)
+
 
 arguments = sys.argv[1:]
 
@@ -44,8 +57,7 @@ if not arguments:
     n2 = input("n2: ") 
     arguments = [operation, n1, n2]
 elif len(arguments) != 3:
-    print("Número de argumentos inválidos")
-    print("ex: `sum 5 5`")
+    log.error("Número de argumentos inválidos, ex sum 5 5")
     sys.exit(1) #saída com erro
 
 operation, *nums = arguments
@@ -72,7 +84,7 @@ for num in nums:
 try:
     n1, n2 = validated_nums
 except ValueError as e:
-    print(str(e))
+    log.error(str(e))
     sys.exit(1)
 
 # TODO: usar dict de funções
@@ -94,8 +106,7 @@ try:
     with open(filepath, "a") as file_:
         file_.write(f"{timestamp} - {user} - {operation}, {n1}, {n2} = {result}\n")
 except PermissonError as e:
-    # TODO: logging
-    print(str(e))
+    log.error(str(e))
     sys.exit(1)
 
 print(f"O resultado é {result}")

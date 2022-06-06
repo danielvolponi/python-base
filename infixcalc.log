@@ -17,3 +17,4 @@ sub, 10, 30 = -20
 2022-06-05T17:32:27.520893 - danielvolponi - sub, 1, 2 = -1
 2022-06-05T17:42:47.107828 - danielvolponi - sub, 1, 1 = 0
 2022-06-05T17:42:52.931413 - danielvolponi - sum, 1, 1 = 2
+2022-06-06T14:57:12.926018 - daniel.volponi - sum, 3, 5 = 8
