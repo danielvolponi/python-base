@@ -63,16 +63,17 @@ if len(ocupados) == len(quartos):
 
 nome = input("Nome do cliente: ").strip()
 print("Lista de Quartos:")
+print("Número - Nome do Quarto -   Preço   - Disponível")
 for codigo, dados in quartos.items():
     nome_quarto = dados["nome"]
     preco = dados["preco"]
     disponivel = "⛔" if not dados['disponivel'] else "🆓"
     # TODO: Substituir casa decimal por virgula
-    print(f"{codigo} - {nome_quarto} - R$ {preco:.2f} - {disponivel}")
+    print(f"{codigo:<6} - {nome_quarto:<14} - R$ {preco:<9.2f} - {disponivel}")
 
 print("-" * 40)
 
-
+# TODO: usar pacote csv
 try:
     num_quarto = int(input("Número do quarto: ").strip())
     if not quartos[num_quarto]["disponivel"]:
