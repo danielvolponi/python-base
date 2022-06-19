@@ -48,65 +48,70 @@ ch.setFormatter(fmt)
 log.addHandler(ch)
 
 
-arguments = sys.argv[1:]
+while True:
+    
+    arguments = sys.argv[1:]
+    
+    # Validacao
+    if not arguments:
+        operation = input("Operação: ")
+        n1 = input("n1: ")
+        n2 = input("n2: ") 
+        arguments = [operation, n1, n2]
+    elif len(arguments) != 3:
+        log.error("Número de argumentos inválidos, ex sum 5 5")
+        sys.exit(1) #saída com erro
 
-# Validacao
-if not arguments:
-    operation = input("Operação: ")
-    n1 = input("n1: ")
-    n2 = input("n2: ") 
-    arguments = [operation, n1, n2]
-elif len(arguments) != 3:
-    log.error("Número de argumentos inválidos, ex sum 5 5")
-    sys.exit(1) #saída com erro
+    operation, *nums = arguments
 
-operation, *nums = arguments
+    valid_operations = ("sum", "sub", "mul", "div")
 
-valid_operations = ("sum", "sub", "mul", "div")
-
-if operation not in valid_operations:
-    print("Operação inválida")
-    print(valid_operations)
-    sys.exit(1)
-
-validated_nums = []
-for num in nums:
-    # TODO: Repetição while + exceptions
-    if not num.replace(".", "").isdigit():
-        print(f"Número Inválido {num}")
+    if operation not in valid_operations:
+        print("Operação inválida")
+        print(valid_operations)
         sys.exit(1)
-    if "." in num:
-        num = float(num)
-    else: 
-        num = int(num)
-    validated_nums.append(num)
 
-try:
-    n1, n2 = validated_nums
-except ValueError as e:
-    log.error(str(e))
-    sys.exit(1)
+    validated_nums = []
+    for num in nums:
+        # TODO: Repetição while + exceptions
+        if not num.replace(".", "").isdigit():
+            print(f"Número Inválido {num}")
+            sys.exit(1)
+        if "." in num:
+            num = float(num)
+        else: 
+            num = int(num)
+        validated_nums.append(num)
 
-# TODO: usar dict de funções
-if operation == "sum":
-    result = n1 + n2
-elif operation == "sub":
-    result = n1 - n2
-elif operation == "mul":
-    result = n1 * n2
-elif operation == "div":
-    result = n1 / n2
+    try:
+        n1, n2 = validated_nums
+    except ValueError as e:
+        log.error(str(e))
+        sys.exit(1)
 
-path = os.curdir
-filepath = os.path.join(path, "infixcalc.log")
-timestamp = datetime.now().isoformat()
-user = os.getenv('USER', 'anonymous')
+    # TODO: usar dict de funções
+    if operation == "sum":
+        result = n1 + n2
+    elif operation == "sub":
+        result = n1 - n2
+    elif operation == "mul":
+        result = n1 * n2
+    elif operation == "div":
+        result = n1 / n2
 
-try: 
-    with open(filepath, "a") as file_:
-        file_.write(f"{timestamp} - {user} - {operation}, {n1}, {n2} = {result}\n")
-except PermissonError as e:
-    log.error(str(e))
-    sys.exit(1)
+    path = os.curdir
+    filepath = os.path.join(path, "infixcalc.log")
+    timestamp = datetime.now().isoformat()
+    user = os.getenv('USER', 'anonymous')
 
-print(f"O resultado é {result}")
+    try: 
+        with open(filepath, "a") as file_:
+            file_.write(f"{timestamp} - {user} - {operation}, {n1}, {n2} = {result}\n")
+    except PermissonError as e:
+        log.error(str(e))
+        sys.exit(1)
+
+    print(f"O resultado é {result}")
+
+    if input("Pressione enter para continuar ou qualquer tecla para sair "):
+        break

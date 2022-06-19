@@ -2,3 +2,6 @@ Minha Primeira Nota	Geral	Esta é minha primeira nota
 Minha Segunda Nota	tecnologia	Python é muito legal!!!!
 Minha Terceira Nota	tecnologia	Java também é legal
 Minha nota	teste	123
+Python	tecnologia	python é legal
+Daniel	geral	Daniel é o meu nome
+Teste	repeticao	testado o while

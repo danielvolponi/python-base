@@ -1,0 +1,4 @@
+Daniel,1,3
+Eu,4,10
+Daniel,2,50
+lucas,3,2
