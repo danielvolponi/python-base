@@ -41,17 +41,25 @@ info = {
     "umidade": None
 }
 
-keys = info.keys()
+while True:
+    # condicao de parada
+    # o dicionario esta completamente preenchido
+    info_size = len(info.values())
+    filled_size = (len([value for value in info.values() if value is not None]))
+    if info_size == filled_size:
+        break
 
-for key in keys:
-    try:
-        info[key] = float(input(f"Qual a {key}? ").strip())
-    except ValueError:
-        log.error(f"{key.capitalize()} inválida")
-        sys.exit(1)
+    for key in info.keys():
+        if info[key] is not None:
+            continue
+            
+        try:
+            info[key] = float(input(f"Qual a {key}? ").strip())
+        except ValueError:
+            log.error(f"{key.capitalize()} inválida")
+            sys.exit(1)
 
-temp = info["temperatura"]
-umidade = info["umidade"]
+temp, umidade = info.values()
 
 
 
