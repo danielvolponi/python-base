@@ -48,10 +48,19 @@ ch.setFormatter(fmt)
 log.addHandler(ch)
 
 
+arguments = sys.argv[1:]
+
+valid_operations = ("sum", "sub", "mul", "div")
+
+path = os.curdir
+filepath = os.path.join(path, "infixcalc.log")
+timestamp = datetime.now().isoformat()
+user = os.getenv('USER', 'anonymous')
+
+
+
 while True:
-    
-    arguments = sys.argv[1:]
-    
+      
     # Validacao
     if not arguments:
         operation = input("Operação: ")
@@ -64,7 +73,6 @@ while True:
 
     operation, *nums = arguments
 
-    valid_operations = ("sum", "sub", "mul", "div")
 
     if operation not in valid_operations:
         print("Operação inválida")
@@ -99,19 +107,18 @@ while True:
     elif operation == "div":
         result = n1 / n2
 
-    path = os.curdir
-    filepath = os.path.join(path, "infixcalc.log")
-    timestamp = datetime.now().isoformat()
-    user = os.getenv('USER', 'anonymous')
+    print(f"O resultado é {result}")
 
+    
     try: 
-        with open(filepath, "a") as file_:
-            file_.write(f"{timestamp} - {user} - {operation}, {n1}, {n2} = {result}\n")
+        with open(filepath, "a") as log:
+            log.write(f"{timestamp} - {user} - {operation}, {n1}, {n2} = {result}\n")
     except PermissonError as e:
         log.error(str(e))
         sys.exit(1)
 
-    print(f"O resultado é {result}")
 
+    arguments = None 
+    
     if input("Pressione enter para continuar ou qualquer tecla para sair "):
         break

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Buscar todos os nomes que comecam com a letra B"""
+Imprime apenas os nomes iniciados com a a letra B"""
 
 names = [
     "Bruno",
@@ -10,13 +10,20 @@ names = [
     "Brian",
 ]
 
-# TODO: Usar lambdas
+
+# Estilo Funcional
+print("Estilo Funcional")
+print(*list(filter(lambda text: text[0].lower() == "b" , names)), sep = "\n")
+
+print()
+
+# Estilo Imperatio
+print("Estilo Procedural")
 def starts_with_b(text):
+    """Return bool if text starts with b"""
     return text[0].lower() == "b"
-    # return text.lower().startswith("b")
 
-print(*list(filter(starts_with_b, names)))
-
-# for name in names:
-    # if name.lower().startswith("b"):
-        # print(name)
+filtro = filter(starts_with_b, names)
+filtro = list(filtro)
+for name in filtro:
+    print(name)

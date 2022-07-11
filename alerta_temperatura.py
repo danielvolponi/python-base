@@ -34,6 +34,7 @@ ch.setLevel(log_level)
 ch.setFormatter(fmt)
 log.addHandler(ch)
 
+# TODO: Mover para módulo de utilidades
 
 def is_completely_filled(dict_of_inputs: Dict) -> bool:
     """Return a boolean telling if a dict is a completly filled."""
@@ -56,6 +57,7 @@ def read_inputs_for_dict(dict_of_info):
                 log.error(f"{key.capitalize()} inválida")
                 break # para o for
                 
+# Programa Principal
 
 info = {
     "temperatura": None,
