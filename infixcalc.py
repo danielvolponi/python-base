@@ -50,7 +50,12 @@ log.addHandler(ch)
 
 arguments = sys.argv[1:]
 
-valid_operations = ("sum", "sub", "mul", "div")
+valid_operations = {
+    "sum": lambda a, b: a + b,
+    "sub": lambda a, b: a - b,
+    "mul": lambda a, b: a * b,
+    "div": lambda a, b: a / b,
+}
 
 path = os.curdir
 filepath = os.path.join(path, "infixcalc.log")
@@ -97,15 +102,7 @@ while True:
         log.error(str(e))
         sys.exit(1)
 
-    # TODO: usar dict de funções
-    if operation == "sum":
-        result = n1 + n2
-    elif operation == "sub":
-        result = n1 - n2
-    elif operation == "mul":
-        result = n1 * n2
-    elif operation == "div":
-        result = n1 / n2
+    result = valid_operations[operation](n1, n2)
 
     print(f"O resultado é {result}")
 

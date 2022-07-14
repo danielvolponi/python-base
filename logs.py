@@ -4,7 +4,7 @@ import logging
 from logging import handlers
 
 # BOILERPLATE
-# TODO: usar funcao
+# TODO: mover para um módulo de utilidades
 # TODO: usar lib (loguru)
 log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
 log = logging.Logger("logs.py", log_level)
